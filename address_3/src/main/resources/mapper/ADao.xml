@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.ADao">
+
+	
+	<!-- 여기서 데이터가 흘러가서 가져온다. -->
+	<select id="listDao" resultType="com.springlec.base.model.ADto">
+	 	SELECT * FROM user_address
+	</select>
+	
+	<insert id="writeDao">
+		INSERT INTO user_address (aName, aPhone, aAddress, aEmail, aRelation, aInsertdate) VALUES (#{aName}, #{aPhone}, #{aAddress},  #{aEmail},  #{aRelation}, now())
+	</insert>
+	
+	<select id="searchDao" resultType="com.springlec.base.model.ADto">
+	 	SELECT * FROM user_address WHERE aId = #{aId}
+	</select>
+	
+	<delete id="deleteDao">
+		DELETE FROM user_address WHERE aId = #{aId}
+	</delete>
+	
+	<update id="modifyDao">
+		UPDATE user_address SET aName = #{aName}, aPhone = #{aPhone}, aAddress = #{aAddress}, aEmail = #{aEmail}, aRelation = #{aRelation} WHERE aId = #{aId}
+	</update>
+
+	<select id="listQuery" resultType="com.springlec.base.model.ADto">
+	 	SELECT * FROM user_address where ${query} like #{content}
+<!-- 	 	SELECT * FROM user_address where ${query} like concat('%',#{content},'%') -->
+	</select>
+	<!-- sql 지정어들 은 $를 쓴다.즉, table 이나, column이런 -->
+	
+
+</mapper>
